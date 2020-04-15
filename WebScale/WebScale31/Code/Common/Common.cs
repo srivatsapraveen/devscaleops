@@ -3,11 +3,20 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Azure.Documents;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
 namespace WebScale31.Code
 {
     public class Common
     {
+        public static TimeSpan Time(Action action)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            action();
+            stopwatch.Stop();
+            return stopwatch.Elapsed;
+        }
+
         public static bool IsAzureCosmosdbTable()
         {
             var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["StorageConnectionString"];

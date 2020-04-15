@@ -8,7 +8,7 @@ namespace WebScale31.Code.Actions
 {
     public class action_customer
     {
-        string tableName = "demo" + Guid.NewGuid().ToString().Substring(0, 5);
+        string tableName = "demotbl";
         CloudTable table;
         private async Task Init()
         {
