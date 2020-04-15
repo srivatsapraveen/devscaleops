@@ -8,6 +8,10 @@ namespace WebScale31.Code.Actions
 {
     public class action_customer
     {
+        public action_customer(string strcon)
+        {
+            Common.constr = strcon;
+        }
         string tableName = "demotbl";
         CloudTable table;
         private async Task Init()

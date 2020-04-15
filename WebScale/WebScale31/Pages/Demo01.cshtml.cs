@@ -23,13 +23,18 @@ namespace WebScale31.Pages
 
         public void OnGet()
         {
-            action_customer ac = new action_customer();
+            action_customer ac = new action_customer("StorageConnectionString_TBL");
             int j = 0;
 
             int count = 10;
 
             if (Request.Query["counter"].Count > 0)
                 count = Convert.ToInt32(Request.Query["counter"]);
+
+            if (Common.IsAzureCosmosdbTable())
+                Message += "DB is Az COSMOS <br/>";
+            else
+                Message += "DB is Az TABLE<br/>";
 
             TimeSpan time = Common.Time(() =>
             {
