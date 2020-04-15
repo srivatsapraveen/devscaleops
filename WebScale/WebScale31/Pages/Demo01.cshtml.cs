@@ -40,11 +40,13 @@ namespace WebScale31.Pages
             {
                 for (j = 0; j < count; j++)
                 {
-                    var it = ac.Query("Walter@contoso.com").GetAwaiter().GetResult();
-                    foreach (vm_customer i in it)
-                    {
-                        Message += i.RowKey + ":" + i.PartitionKey + ":" + i.Email + "<br/>";
-                    }
+                    vm_customer it;
+                    if (Request.Query["q"].Count > 0)
+                        it = ac.Query("Walter@contoso.com").GetAwaiter().GetResult().First();
+                    else
+                        it = ac.Retrieve("Harp","Walter").GetAwaiter().GetResult();
+
+                    Message += it.RowKey + ":" + it.PartitionKey + ":" + it.Email + "<br/>";
                 }
             });
             Message += "Iterations was : " + j + "<br/>";
