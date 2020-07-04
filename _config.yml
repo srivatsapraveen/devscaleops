@@ -1,1 +1,4 @@
-theme: tomjoht/documentation-theme-jekyll
+plugins:
+  - jekyll-remote-theme
+  
+ remote_theme: tomjoht/documentation-theme-jekyll
